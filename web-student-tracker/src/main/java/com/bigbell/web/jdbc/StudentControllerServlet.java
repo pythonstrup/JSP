@@ -72,12 +72,35 @@ public class StudentControllerServlet extends HttpServlet {
 				deleteStudent(request, response);
 				break;
 				
+			case "SEARCH":
+				searchStudent(request, response);
+				break;
+				
 			default:
 				listStudents(request, response);
 			}
 		} catch (Exception exc) {
 			throw new ServletException(exc);
 		}
+	}
+
+	private void searchStudent(HttpServletRequest request, HttpServletResponse response) 
+		throws Exception{
+		
+		// read search name from form data
+		String theSearchName = request.getParameter("theSearchName");
+		
+		// search students from db util
+		List<Student> students = studentDbUtil.searchStudents(theSearchName);
+		
+		// add student to the request
+		request.setAttribute("STUDENT_LSIT", students);
+		
+		// send to JSP page (view)
+		RequestDispatcher dispatcher =
+				request.getRequestDispatcher("/list-student_usingJSTL.jsp");
+		dispatcher.forward(request, response);
+		
 	}
 
 	private void deleteStudent(HttpServletRequest request, HttpServletResponse response) 
