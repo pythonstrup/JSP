@@ -1,7 +1,7 @@
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="java.sql.Statement"%>
 <%@ page import="java.sql.Connection"%>
-<%@ page import="common.JDBConnect"%>
+<%@ page import="common.JDBConnect" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
        pageEncoding="UTF-8"%>  
 <html>
