@@ -23,11 +23,35 @@ public class JDBConnect {
 			String user = "root";
 			String pwd = "1234";
 			
+			con = DriverManager.getConnection(url, user, pwd);
 			
-//			Class.forName(application.getInitParameter("MySQLDriver"));
-//			String url = "jdbc:mysql://localhost:3306/musthave?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC";
-//			String user = application.getInitParameter("MySQLId");
-//			String pwd = application.getInitParameter("MySQLPwd");
+			System.out.println("DB Connection Success");
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public JDBConnect(String drv, String url, String id, String pw) {
+		try {
+			
+			Class.forName(drv);
+			
+			con = DriverManager.getConnection(url, id, pw);
+			
+			System.out.println("DB Connection Success");
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public JDBConnect(ServletContext application) {
+		try {
+			Class.forName(application.getInitParameter("MySQLDriver"));
+			String url = application.getInitParameter("MySQLURL");
+			String user = application.getInitParameter("MySQLId");
+			String pwd = application.getInitParameter("MySQLPwd");
 			
 			con = DriverManager.getConnection(url, user, pwd);
 			

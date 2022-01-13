@@ -15,9 +15,19 @@
 	
 	//JDBConnect jdbc = new JDBConnect();
 	
-	JDBConnect jdbc = new JDBConnect(application);
+	JDBConnect jdbc = new JDBConnect();
 	
 	jdbc.close();
+	%>
+	
+	<%
+	String drv = application.getInitParameter("MySQLDriver");
+	String url = application.getInitParameter("MySQLURL");
+	String user = application.getInitParameter("MySQLId");
+	String pwd = application.getInitParameter("MySQLPwd");
+	JDBConnect jdbc1 = new JDBConnect(drv, url, user, pwd);
+	
+	jdbc1.close();
 	%>
 	
 	<h2>Connection Pool Test</h2>
